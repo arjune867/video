@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Grup Tante hits</title>
-    <meta name="description" content="Temukan dan bergabung dengan grup viral terbaru di Indonesia. video update harian.">
+    <title>Grup Viral Indonesia</title>
+    <meta name="description" content="Temukan dan bergabung dengan grup viral terbaru di Indonesia. App update harian.">
     
     <!-- PWA Meta Tags -->
     <meta name="theme-color" content="#ffffff">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="apple-mobile-web-app-title" content="Grup Tante Hits">
+    <meta name="apple-mobile-web-app-title" content="Grup Viral">
     
     <!-- Icons untuk iOS & Android -->
     <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/124/124010.png">
-    <link rel="icon" type="image/png" href="https://i.pinimg.com/736x/25/cb/42/25cb421b117bc1904289cbe66269b578.jpg">
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/124/124010.png">
 
     <!-- Manifest JSON (Data URI untuk Single File PWA) -->
     <link rel="manifest" href='data:application/manifest+json;base64,ewogICJuYW1lIjogIkdydXAgVmlyYWwgSW5kb25lc2lhIiwKICAic2hvcnRfbmFtZSI6ICJHcnVwVmlyYWwiLAogICJkZXNjcmlwdGlvbiI6ICJVcGRhdGUgR3J1cCBWaXJhbCBIYXJpYW4iLAogICJzdGFydF91cmwiOiAiLiIsCiAgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsCiAgImJhY2tncm91bmRfY29sb3IiOiAiI2ZmZmZmZiIsCiAgInRoZW1lX2NvbG9yIjogIiNFNjAwMjMiLAogICJvcmllbnRhdGlvbiI6ICJwb3J0cmFpdCIsCiAgImljb25zIjogWwogICAgewogICAgICAic3JjIjogImh0dHBzOi8vY2RuLWljb25zLXBuZy5mbGF0aWNvbi5jb20vNTEyLzEyNC8xMjQwMTAucG5nIiwKICAgICAgInNpemVzIjogIjE5MngxOTIiLAogICAgICAidHlwZSI6ICJpbWFnZS9wbmciCiAgICB9LAogICAgewogICAgICAic3JjIjogImh0dHBzOi8vY2RuLWljb25zLXBuZy5mbGF0aWNvbi5jb20vNTEyLzEyNC8xMjQwMTAucG5nIiwKICAgICAgInNpemVzIjogIjUxMng1MTIiLAogICAgICAidHlwZSI6ICJpbWFnZS9wbmciCiAgICB9CiAgXQp9'>
@@ -135,75 +135,76 @@
 
     <!-- Header -->
     <nav class="bg-white/90 backdrop-blur-md shadow-sm sticky top-0 z-40 transition-all duration-300" id="navbar">
-        <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+        <div class="max-w-7xl mx-auto px-3 py-3 flex justify-between items-center">
             <div class="flex items-center gap-2">
-                <div class="bg-primary/10 p-2 rounded-full">
-                    <i class="bi bi-fire text-primary text-xl"></i>
+                <div class="bg-primary/10 p-1.5 rounded-full">
+                    <i class="bi bi-fire text-primary text-lg"></i>
                 </div>
                 <div>
-                    <h1 class="text-lg font-bold text-gray-900 tracking-tight leading-none">Grup tante Hits</h1>
-                    <p class="text-[10px] text-gray-500 font-medium">Video Update Harian</p>
+                    <h1 class="text-base font-bold text-gray-900 tracking-tight leading-none">Grup Viral</h1>
+                    <p class="text-[9px] text-gray-500 font-medium">Video Update Harian</p>
                 </div>
             </div>
             
-            <div class="flex items-center bg-green-50 px-3 py-1 rounded-full border border-green-100 shadow-sm">
-                <span class="relative flex h-2 w-2 mr-2">
+            <div class="flex items-center bg-green-50 px-2 py-1 rounded-full border border-green-100 shadow-sm">
+                <span class="relative flex h-1.5 w-1.5 mr-1.5">
                   <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                  <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                  <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-green-500"></span>
                 </span>
-                <span class="text-xs font-bold text-green-700">1.2k</span>
+                <span class="text-[10px] font-bold text-green-700">1.2k</span>
             </div>
         </div>
     </nav>
 
     <!-- Tombol Install PWA (Fixed position, responsive z-index) -->
-    <div id="install-container" class="hidden fixed bottom-24 right-6 z-50 install-btn-anim">
-        <button id="install-button" class="bg-gray-900 text-white px-5 py-3 rounded-full shadow-2xl flex items-center gap-2 hover:bg-gray-800 transition font-medium text-sm active:scale-95">
+    <div id="install-container" class="hidden fixed bottom-20 right-4 z-50 install-btn-anim">
+        <button id="install-button" class="bg-gray-900 text-white px-4 py-2 rounded-full shadow-2xl flex items-center gap-2 hover:bg-gray-800 transition font-medium text-xs active:scale-95">
             <i class="bi bi-download"></i> <span class="hidden xs:inline">Install App</span><span class="xs:hidden">Install</span>
         </button>
     </div>
 
     <!-- Konten Utama -->
-    <main class="max-w-6xl mx-auto px-4 py-6">
+    <main class="max-w-7xl mx-auto px-2 py-4">
         
         <!-- [IKLAN] BANNER ATAS -->
-        <div id="display-ad-banner" class="w-full mb-8 overflow-hidden">
+        <div id="display-ad-banner" class="w-full mb-6 overflow-hidden px-1">
             <!-- Konten Iklan -->
-            <div class="w-full bg-gray-100 border-2 border-dashed border-gray-300 rounded-xl h-24 md:h-32 flex flex-col items-center justify-center">
-                <span class="text-gray-400 text-xs font-bold uppercase tracking-widest mb-1">Loading Ads...</span>
+            <div class="w-full bg-gray-100 border-2 border-dashed border-gray-300 rounded-xl h-20 md:h-28 flex flex-col items-center justify-center">
+                <span class="text-gray-400 text-[10px] font-bold uppercase tracking-widest mb-1">Loading Ads...</span>
             </div>
         </div>
 
-        <div class="mb-8">
-            <div class="text-center md:text-left md:flex justify-between items-end mb-4">
+        <div class="mb-6 px-1">
+            <div class="text-center md:text-left md:flex justify-between items-end mb-3">
                 <div>
-                    <h2 class="text-2xl md:text-3xl font-bold text-gray-900">Trending Video 🔥</h2>
-                    <p class="text-gray-500 text-sm mt-1">Tonton cuplikan dan gabung grup eksklusif.</p>
+                    <h2 class="text-lg md:text-2xl font-bold text-gray-900">Trending Video 🔥</h2>
+                    <p class="text-gray-500 text-xs mt-0.5">Tonton cuplikan dan gabung grup eksklusif.</p>
                 </div>
             </div>
             
             <!-- Container Kategori Dinamis -->
-            <div id="category-list" class="flex gap-2 overflow-x-auto hide-scroll pb-2 -mx-4 px-4 md:mx-0 md:px-0">
+            <div id="category-list" class="flex gap-1.5 overflow-x-auto hide-scroll pb-2">
                 <!-- Tombol Kategori dirender via JS -->
             </div>
         </div>
 
-        <!-- GRID SYSTEM (KONTEN DINAMIS) -->
-        <div id="video-grid" class="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+        <!-- GRID SYSTEM (KONTEN DINAMIS - 3 KOLOM MOBILE) -->
+        <!-- Menggunakan gap-2 (sempit) dan grid-cols-3 untuk mobile -->
+        <div id="video-grid" class="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 md:gap-4 px-1">
             <!-- Kartu video akan dirender oleh JavaScript di sini -->
         </div>
 
     </main>
     
-    <footer class="text-center py-8 text-gray-400 text-xs border-t border-gray-100 mt-8 bg-white pb-20 md:pb-8">
-        <div class="max-w-6xl mx-auto px-4 relative">
-            <p class="mb-2 font-medium text-gray-900">Grup Viral Indonesia</p>
-            <p class="mb-4">Dibuat dengan ❤️ untuk komunitas.</p>
+    <footer class="text-center py-6 text-gray-400 text-[10px] border-t border-gray-100 mt-6 bg-white pb-20 md:pb-8">
+        <div class="max-w-7xl mx-auto px-4 relative">
+            <p class="mb-1 font-medium text-gray-900">Grup Viral Indonesia</p>
+            <p class="mb-3">Dibuat dengan ❤️ untuk komunitas.</p>
             <p class="text-gray-300">&copy; 2025 All rights reserved.</p>
             
             <!-- Tombol Trigger Admin Panel (Tersembunyi tapi bisa diakses) -->
             <button onclick="toggleAdmin()" class="absolute right-0 bottom-0 p-4 text-gray-300 hover:text-gray-600 transition active:text-gray-800" title="Admin Panel">
-                <i class="bi bi-lock-fill text-lg"></i>
+                <i class="bi bi-lock-fill text-base"></i>
             </button>
         </div>
     </footer>
@@ -263,6 +264,10 @@
                                     <option value="embed">Embed Code (Pinterest/TikTok)</option>
                                 </select>
                                 <input type="text" id="new-src" placeholder="URL Video / Kode Embed HTML" class="p-2.5 border rounded-lg text-sm focus:ring-1 focus:ring-primary outline-none">
+                                
+                                <!-- FITUR THUMBNAIL KEMBALI DI SINI -->
+                                <input type="text" id="new-poster" placeholder="URL Thumbnail/Poster (Opsional)" class="p-2.5 border rounded-lg text-sm focus:ring-1 focus:ring-primary outline-none">
+                                
                                 <input type="text" id="new-views" placeholder="Jumlah Views (ex: 250k)" class="p-2.5 border rounded-lg text-sm focus:ring-1 focus:ring-primary outline-none">
                                 
                                 <!-- SELECT KATEGORI -->
@@ -369,9 +374,6 @@
         // Ini membantu browser mengenali situs sebagai PWA yang bisa diinstall
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', function() {
-                // Kita tidak bisa membuat file sw.js terpisah di sini,
-                // tapi kita biarkan browser mencoba mendaftarkannya.
-                // Meskipun gagal (404), manifest.json data-uri sering cukup untuk "Add to Homescreen" di Android Chrome modern.
                 navigator.serviceWorker.register('/sw.js').then(function(registration) {
                     console.log('SW registered: ', registration.scope);
                 }, function(err) {
@@ -390,10 +392,10 @@
                             <span class="text-gray-400 text-xs font-bold uppercase tracking-widest mb-1">Iklan Sponsor</span>
                             <div class="text-gray-500 text-sm font-medium flex items-center gap-2"><i class="bi bi-image"></i> Banner Area (728x90)</div>
                          </div>`,
-                native: `<div class="text-center p-6 w-full">
-                            <i class="bi bi-megaphone text-4xl text-gray-400 mb-3 block"></i>
-                            <span class="text-xs text-gray-500 font-medium">Space Iklan Native</span>
-                            <div class="mt-2 w-full h-32 bg-gray-300/50 rounded border border-dashed border-gray-400 flex items-center justify-center text-[10px] text-gray-500">Script Iklan</div>
+                native: `<div class="text-center p-4 w-full">
+                            <i class="bi bi-megaphone text-3xl text-gray-400 mb-2 block"></i>
+                            <span class="text-[10px] text-gray-500 font-medium">Space Iklan Native</span>
+                            <div class="mt-1 w-full h-24 bg-gray-300/50 rounded border border-dashed border-gray-400 flex items-center justify-center text-[10px] text-gray-500">Script Iklan</div>
                          </div>`,
                 anchor: `<div class="w-full bg-white border-t border-gray-200 shadow-lg p-2 flex justify-center relative">
                             <button onclick="this.parentElement.remove()" class="absolute -top-3 right-2 bg-gray-200 rounded-full p-1 px-2 text-xs font-bold">x</button>
@@ -447,8 +449,8 @@
             appData.categories.forEach(cat => {
                 const isActive = cat === activeCategory;
                 const btnClass = isActive 
-                    ? 'px-4 py-1.5 bg-black text-white rounded-full text-xs font-medium whitespace-nowrap shadow-lg shadow-gray-200 transition transform scale-105 cat-btn-active' 
-                    : 'px-4 py-1.5 bg-white border border-gray-200 text-gray-600 rounded-full text-xs font-medium whitespace-nowrap transition hover:bg-gray-50';
+                    ? 'px-3 py-1.5 bg-black text-white rounded-full text-[10px] font-medium whitespace-nowrap shadow-lg shadow-gray-200 transition transform scale-105 cat-btn-active' 
+                    : 'px-3 py-1.5 bg-white border border-gray-200 text-gray-600 rounded-full text-[10px] font-medium whitespace-nowrap transition hover:bg-gray-50';
                 const btn = document.createElement('button');
                 btn.className = btnClass;
                 btn.innerText = cat;
@@ -483,36 +485,39 @@
                         <video autoplay muted loop playsinline poster="${video.poster}">
                             <source src="${video.src}" type="video/mp4">
                         </video>
-                        <div class="absolute top-3 right-3 bg-black/60 backdrop-blur-sm text-white text-[10px] font-bold px-2 py-1 rounded-md flex items-center z-10">
-                            <i class="bi bi-play-fill mr-1 text-lg"></i> ${video.views}
+                        <div class="absolute top-1.5 right-1.5 bg-black/60 backdrop-blur-sm text-white text-[8px] font-bold px-1.5 py-0.5 rounded flex items-center z-10">
+                            <i class="bi bi-play-fill mr-0.5"></i> ${video.views}
                         </div>
                     `;
                 } else if (video.type === 'embed') {
                     mediaContent = `<div class="w-full h-full bg-black flex items-center justify-center overflow-hidden">${video.src}</div>`;
                 }
 
-                const liveBadge = video.isLive ? '<div class="absolute bottom-3 left-3 bg-red-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-sm z-10">LIVE</div>' : '';
+                const liveBadge = video.isLive ? '<div class="absolute bottom-1.5 left-1.5 bg-red-600 text-white text-[8px] font-bold px-1.5 py-0.5 rounded-sm z-10">LIVE</div>' : '';
                 const linkToGroup = video.groupLink && video.groupLink.trim() !== '' ? video.groupLink : appData.globalLink;
                 const linkToFull = video.fullLink && video.fullLink.trim() !== '' ? video.fullLink : appData.globalLink;
 
                 const cardHtml = `
-                    <div class="bg-white rounded-xl overflow-hidden shadow-sm card-hover border border-gray-100 flex flex-col h-full relative">
+                    <div class="bg-white rounded-lg overflow-hidden shadow-sm card-hover border border-gray-100 flex flex-col h-full relative">
                         <div class="img-container relative">
                             ${mediaContent}
                             ${liveBadge}
                         </div>
-                        <div class="p-4 flex flex-col flex-grow">
-                            <div class="flex justify-between items-start mb-1 gap-2">
-                                <h3 class="font-bold text-gray-900 truncate w-3/4">${video.title}</h3>
-                                <span class="text-[10px] bg-gray-100 text-gray-500 px-1.5 py-0.5 rounded border whitespace-nowrap">${video.category || 'Umum'}</span>
+                        <div class="p-2 flex flex-col flex-grow">
+                            <div class="flex flex-col mb-1">
+                                <h3 class="font-bold text-gray-900 truncate text-[10px] leading-tight">${video.title}</h3>
+                                <span class="text-[8px] text-gray-400">${video.category || 'Umum'}</span>
                             </div>
-                            <p class="text-xs text-gray-500 mt-1 mb-4 line-clamp-2">${video.desc}</p>
-                            <div class="mt-auto space-y-2">
-                                <button onclick="joinGroup('${linkToFull}')" class="w-full bg-white border border-gray-200 hover:bg-gray-50 text-gray-900 font-semibold py-2 rounded-lg text-sm flex justify-center items-center gap-2 transition active:scale-95">
-                                    <i class="bi bi-collection-play"></i> Tonton Full
+                            
+                            <!-- Deskripsi disembunyikan di mobile agar rapi 3 kolom -->
+                            <p class="text-[9px] text-gray-500 mt-0.5 mb-2 line-clamp-2 hidden sm:block">${video.desc}</p>
+                            
+                            <div class="mt-auto space-y-1.5">
+                                <button onclick="joinGroup('${linkToFull}')" class="w-full bg-white border border-gray-200 hover:bg-gray-50 text-gray-900 font-bold py-1.5 rounded text-[9px] flex justify-center items-center gap-1 transition active:scale-95">
+                                    <i class="bi bi-play-circle"></i> Play
                                 </button>
-                                <button onclick="joinGroup('${linkToGroup}')" class="w-full bg-green-600 hover:bg-green-700 active:bg-green-800 text-white font-semibold py-2 rounded-lg text-sm flex justify-center items-center gap-2 shadow-md shadow-green-100 transition active:scale-95">
-                                    <i class="bi bi-whatsapp"></i> Gabung Grup
+                                <button onclick="joinGroup('${linkToGroup}')" class="w-full bg-green-600 hover:bg-green-700 active:bg-green-800 text-white font-bold py-1.5 rounded text-[9px] flex justify-center items-center gap-1 shadow-sm transition active:scale-95">
+                                    <i class="bi bi-whatsapp"></i> Gabung
                                 </button>
                             </div>
                         </div>
@@ -521,19 +526,19 @@
                 
                 grid.innerHTML += cardHtml;
 
-                // Native Ad Logic: Index 0 (setelah kartu 1) dan Index 4 (setelah kartu 5)
-                if ((index === 0 || index === 4) && appData.ads.native) {
+                // Native Ad Logic: Muncul setelah kartu ke-2 (index 1) dan kartu ke-5 (index 4)
+                // Agar pas di layout 3 kolom mobile (menyelip di antara grid)
+                if ((index === 1 || index === 4) && appData.ads.native) {
                     const nativeAdHtml = `
-                    <div class="bg-gray-50 rounded-xl overflow-hidden shadow-sm border border-gray-200 flex flex-col h-full relative group">
-                        <div class="absolute top-2 right-2 bg-white/90 text-gray-500 text-[10px] px-2 py-0.5 rounded border border-gray-200 z-10 font-medium">Promosi</div>
+                    <div class="bg-gray-50 rounded-lg overflow-hidden shadow-sm border border-gray-200 flex flex-col h-full relative group">
+                        <div class="absolute top-1 right-1 bg-white/90 text-gray-500 text-[8px] px-1.5 py-0.5 rounded border border-gray-200 z-10 font-medium">Ad</div>
                         <div class="img-container relative bg-gray-200 flex items-center justify-center aspect-[9/16] overflow-hidden">
                              ${appData.ads.native}
                         </div>
-                        <div class="p-4 flex flex-col flex-grow bg-white">
-                            <h3 class="font-bold text-gray-900 truncate">Info Sponsor</h3>
-                            <p class="text-xs text-gray-500 mt-1 mb-4 line-clamp-2">Klik iklan di atas untuk info lebih lanjut.</p>
+                        <div class="p-2 flex flex-col flex-grow bg-white">
+                            <h3 class="font-bold text-gray-900 truncate text-[10px]">Sponsor</h3>
                             <div class="mt-auto">
-                                 <button class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg text-sm shadow-sm transition">Lihat Detail</button>
+                                 <button class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-1.5 rounded text-[9px] shadow-sm transition">Cek</button>
                             </div>
                         </div>
                     </div>`;
@@ -704,8 +709,18 @@
             const category = document.getElementById('new-category-select').value;
             const groupLink = document.getElementById('new-group-link').value;
             const fullLink = document.getElementById('new-full-link').value;
+            
+            // Get Poster URL from input
+            const inputPoster = document.getElementById('new-poster').value;
             const defaultPoster = 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1000&auto=format&fit=crop';
-            const poster = (editingIndex >= 0) ? appData.videos[editingIndex].poster : defaultPoster;
+            
+            // Use input poster if available, else keep existing or default
+            let poster = defaultPoster;
+            if (inputPoster && inputPoster.trim() !== "") {
+                poster = inputPoster;
+            } else if (editingIndex >= 0) {
+                poster = appData.videos[editingIndex].poster;
+            }
 
             if (!title || !src) return alert('Judul dan Source wajib diisi!');
 
@@ -725,6 +740,8 @@
             document.getElementById('new-desc').value = video.desc;
             document.getElementById('new-type').value = video.type;
             document.getElementById('new-src').value = video.src;
+            // Set poster value for editing
+            document.getElementById('new-poster').value = video.poster || '';
             document.getElementById('new-views').value = video.views;
             document.getElementById('new-category-select').value = video.category || 'Viral';
             document.getElementById('new-group-link').value = video.groupLink || '';
@@ -746,6 +763,7 @@
             document.getElementById('new-title').value = '';
             document.getElementById('new-desc').value = '';
             document.getElementById('new-src').value = '';
+            document.getElementById('new-poster').value = ''; // Clear poster input
             document.getElementById('new-views').value = '';
             document.getElementById('new-group-link').value = '';
             document.getElementById('new-full-link').value = '';
@@ -820,7 +838,4 @@
         });
     </script>
 </body>
-
 </html>
-
-
