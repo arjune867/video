@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Grup Viral Indonesia</title>
+    <meta name="description" content="Temukan dan bergabung dengan grup viral terbaru di Indonesia. App update harian.">
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#ffffff">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Grup Viral">
+    
+    <!-- Icons untuk iOS & Android -->
+    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/124/124010.png">
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/124/124010.png">
+
+    <!-- Manifest JSON (Data URI untuk Single File PWA) -->
+    <link rel="manifest" href='data:application/manifest+json;base64,ewogICJuYW1lIjogIkdydXAgVmlyYWwgSW5kb25lc2lhIiwKICAic2hvcnRfbmFtZSI6ICJHcnVwVmlyYWwiLAogICJkZXNjcmlwdGlvbiI6ICJVcGRhdGUgR3J1cCBWaXJhbCBIYXJpYW4iLAogICJzdGFydF91cmwiOiAiLiIsCiAgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsCiAgImJhY2tncm91bmRfY29sb3IiOiAiI2ZmZmZmZiIsCiAgInRoZW1lX2NvbG9yIjogIiNFNjAwMjMiLAogICJvcmllbnRhdGlvbiI6ICJwb3J0cmFpdCIsCiAgImljb25zIjogWwogICAgewogICAgICAic3JjIjogImh0dHBzOi8vY2RuLWljb25zLXBuZy5mbGF0aWNvbi5jb20vNTEyLzEyNC8xMjQwMTAucG5nIiwKICAgICAgInNpemVzIjogIjE5MngxOTIiLAogICAgICAidHlwZSI6ICJpbWFnZS9wbmciCiAgICB9LAogICAgewogICAgICAic3JjIjogImh0dHBzOi8vY2RuLWljb25zLXBuZy5mbGF0aWNvbi5jb20vNTEyLzEyNC8xMjQwMTAucG5nIiwKICAgICAgInNpemVzIjogIjUxMng1MTIiLAogICAgICAidHlwZSI6ICJpbWFnZS9wbmciCiAgICB9CiAgXQp9'>
+
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Load Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#E60023',
+                        whatsapp: '#25D366',
+                        facebook: '#1877F2',
+                        twitter: '#000000',
+                    },
+                    screens: {
+                        'xs': '480px',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #f9f9f9;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation; /* Meningkatkan responsivitas touch */
+        }
+        
+        .hide-scroll::-webkit-scrollbar { display: none; }
+        .hide-scroll { -ms-overflow-style: none; scrollbar-width: none; }
+
+        .card-hover {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+        }
+        
+        /* Hover effect hanya di perangkat non-touch (desktop) */
+        @media (hover: hover) {
+            .card-hover:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            }
+            .card-hover:hover .img-container video {
+                transform: scale(1.1);
+            }
+        }
+
+        /* Efek Active (Touch) untuk Mobile */
+        .card-hover:active {
+            transform: scale(0.98);
+            transition: transform 0.1s;
+        }
+
+        .img-container {
+            aspect-ratio: 9/16; 
+            overflow: hidden;
+            position: relative;
+            background-color: #000;
+        }
+        
+        .img-container video, .img-container iframe {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0); opacity: 0; }
+            60% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); }
+        }
+        
+        .install-btn-anim {
+            animation: bounceIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        /* Animasi Anchor Ad */
+        @keyframes slideUp {
+            from { transform: translateY(100%); }
+            to { transform: translateY(0); }
+        }
+        .animate-slide-up {
+            animation: slideUp 0.5s ease-out forwards;
+        }
+
+        /* Admin Modal Styles */
+        .modal-backdrop {
+            background-color: rgba(0,0,0,0.6);
+            backdrop-filter: blur(5px);
+            z-index: 9999;
+        }
+        
+        /* Style tombol kategori aktif */
+        .cat-btn-active {
+            background-color: #000 !important;
+            color: white !important;
+            border-color: #000 !important;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<!-- Padding bottom besar untuk akomodasi Anchor Ad & Navigasi -->
+<body class="pb-32">
+
+    <!-- Header -->
+    <nav class="bg-white/90 backdrop-blur-md shadow-sm sticky top-0 z-40 transition-all duration-300" id="navbar">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div class="bg-primary/10 p-2 rounded-full">
+                    <i class="bi bi-fire text-primary text-xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-lg font-bold text-gray-900 tracking-tight leading-none">Grup Viral</h1>
+                    <p class="text-[10px] text-gray-500 font-medium">Video Update Harian</p>
+                </div>
+            </div>
+            
+            <div class="flex items-center bg-green-50 px-3 py-1 rounded-full border border-green-100 shadow-sm">
+                <span class="relative flex h-2 w-2 mr-2">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                </span>
+                <span class="text-xs font-bold text-green-700">1.2k</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Tombol Install PWA (Fixed position, responsive z-index) -->
+    <div id="install-container" class="hidden fixed bottom-24 right-6 z-50 install-btn-anim">
+        <button id="install-button" class="bg-gray-900 text-white px-5 py-3 rounded-full shadow-2xl flex items-center gap-2 hover:bg-gray-800 transition font-medium text-sm active:scale-95">
+            <i class="bi bi-download"></i> <span class="hidden xs:inline">Install App</span><span class="xs:hidden">Install</span>
+        </button>
+    </div>
+
+    <!-- Konten Utama -->
+    <main class="max-w-6xl mx-auto px-4 py-6">
+        
+        <!-- [IKLAN] BANNER ATAS -->
+        <div id="display-ad-banner" class="w-full mb-8 overflow-hidden">
+            <!-- Konten Iklan -->
+            <div class="w-full bg-gray-100 border-2 border-dashed border-gray-300 rounded-xl h-24 md:h-32 flex flex-col items-center justify-center">
+                <span class="text-gray-400 text-xs font-bold uppercase tracking-widest mb-1">Loading Ads...</span>
+            </div>
+        </div>
+
+        <div class="mb-8">
+            <div class="text-center md:text-left md:flex justify-between items-end mb-4">
+                <div>
+                    <h2 class="text-2xl md:text-3xl font-bold text-gray-900">Trending Video 🔥</h2>
+                    <p class="text-gray-500 text-sm mt-1">Tonton cuplikan dan gabung grup eksklusif.</p>
+                </div>
+            </div>
+            
+            <!-- Container Kategori Dinamis -->
+            <div id="category-list" class="flex gap-2 overflow-x-auto hide-scroll pb-2 -mx-4 px-4 md:mx-0 md:px-0">
+                <!-- Tombol Kategori dirender via JS -->
+            </div>
+        </div>
+
+        <!-- GRID SYSTEM (KONTEN DINAMIS) -->
+        <div id="video-grid" class="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+            <!-- Kartu video akan dirender oleh JavaScript di sini -->
+        </div>
+
+    </main>
+    
+    <footer class="text-center py-8 text-gray-400 text-xs border-t border-gray-100 mt-8 bg-white pb-20 md:pb-8">
+        <div class="max-w-6xl mx-auto px-4 relative">
+            <p class="mb-2 font-medium text-gray-900">Grup Viral Indonesia</p>
+            <p class="mb-4">Dibuat dengan ❤️ untuk komunitas.</p>
+            <p class="text-gray-300">&copy; 2025 All rights reserved.</p>
+            
+            <!-- Tombol Trigger Admin Panel (Tersembunyi tapi bisa diakses) -->
+            <button onclick="toggleAdmin()" class="absolute right-0 bottom-0 p-4 text-gray-300 hover:text-gray-600 transition active:text-gray-800" title="Admin Panel">
+                <i class="bi bi-lock-fill text-lg"></i>
+            </button>
+        </div>
+    </footer>
+
+    <!-- [IKLAN] ANCHOR AD (Sticky Bottom) -->
+    <div id="display-ad-anchor" class="fixed bottom-0 left-0 right-0 z-[100] animate-slide-up" style="display: none;">
+        <!-- Konten Iklan Anchor dirender via JS -->
+    </div>
+
+    <!-- ================= ADMIN PANEL MODAL ================= -->
+    <div id="admin-panel" class="fixed inset-0 hidden modal-backdrop overflow-y-auto">
+        <div class="min-h-screen px-4 text-center">
+            <!-- Spacer untuk vertikal centering -->
+            <span class="inline-block h-screen align-middle" aria-hidden="true">&#8203;</span>
+            
+            <div class="inline-block w-full max-w-4xl p-4 sm:p-6 my-8 text-left align-middle transition-all transform bg-white shadow-2xl rounded-2xl relative">
+                
+                <!-- Header Modal -->
+                <div class="flex justify-between items-center mb-6 border-b pb-4">
+                    <h3 class="text-lg sm:text-xl font-bold text-gray-900 flex items-center"><i class="bi bi-gear-fill mr-2 text-primary"></i>Admin Panel</h3>
+                    <button onclick="toggleAdmin()" class="text-gray-400 hover:text-red-500 text-2xl p-2">
+                        <i class="bi bi-x-circle"></i>
+                    </button>
+                </div>
+
+                <!-- Login -->
+                <div id="admin-login" class="text-center py-12">
+                    <div class="mb-6">
+                        <i class="bi bi-shield-lock text-4xl text-gray-300"></i>
+                    </div>
+                    <p class="mb-4 text-gray-600 font-medium">Verifikasi Identitas</p>
+                    <div class="flex justify-center gap-2 max-w-xs mx-auto">
+                        <input type="password" id="admin-pass" class="border rounded-lg px-4 py-2 w-full text-center focus:ring-2 focus:ring-primary outline-none" placeholder="Kode Akses">
+                        <button onclick="checkLogin()" class="bg-black text-white px-4 py-2 rounded-lg font-medium hover:bg-gray-800">Masuk</button>
+                    </div>
+                </div>
+
+                <!-- Konten Admin -->
+                <div id="admin-content" class="hidden">
+                    <!-- Tabs Navigation -->
+                    <div class="flex space-x-1 bg-gray-100 p-1 rounded-lg mb-6 overflow-x-auto hide-scroll">
+                        <button onclick="switchTab('tab-videos')" class="flex-none py-2 px-4 rounded-md text-sm font-medium focus:outline-none tab-btn bg-white shadow text-gray-900 whitespace-nowrap transition" id="btn-tab-videos">Galeri Video</button>
+                        <button onclick="switchTab('tab-categories')" class="flex-none py-2 px-4 rounded-md text-sm font-medium focus:outline-none tab-btn text-gray-500 hover:text-gray-700 whitespace-nowrap transition" id="btn-tab-categories">Kategori</button>
+                        <button onclick="switchTab('tab-links')" class="flex-none py-2 px-4 rounded-md text-sm font-medium focus:outline-none tab-btn text-gray-500 hover:text-gray-700 whitespace-nowrap transition" id="btn-tab-links">Link Global</button>
+                        <button onclick="switchTab('tab-ads')" class="flex-none py-2 px-4 rounded-md text-sm font-medium focus:outline-none tab-btn text-gray-500 hover:text-gray-700 whitespace-nowrap transition" id="btn-tab-ads">Kode Iklan</button>
+                    </div>
+
+                    <!-- TAB: VIDEOS -->
+                    <div id="tab-videos" class="tab-content">
+                        <div class="bg-gray-50 p-4 sm:p-5 rounded-xl mb-6 border border-gray-200">
+                            <h4 class="font-bold mb-4 text-sm text-gray-700 flex items-center gap-2" id="form-title"><i class="bi bi-plus-square"></i> Tambah Konten Baru</h4>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <input type="text" id="new-title" placeholder="Judul Video" class="p-2.5 border rounded-lg text-sm focus:ring-1 focus:ring-primary outline-none">
+                                <input type="text" id="new-desc" placeholder="Deskripsi Singkat" class="p-2.5 border rounded-lg text-sm focus:ring-1 focus:ring-primary outline-none">
+                                <select id="new-type" class="p-2.5 border rounded-lg text-sm bg-white focus:ring-1 focus:ring-primary outline-none">
+                                    <option value="video">Video MP4 (URL)</option>
+                                    <option value="embed">Embed Code (Pinterest/TikTok)</option>
+                                </select>
+                                <input type="text" id="new-src" placeholder="URL Video / Kode Embed HTML" class="p-2.5 border rounded-lg text-sm focus:ring-1 focus:ring-primary outline-none">
+                                <input type="text" id="new-views" placeholder="Jumlah Views (ex: 250k)" class="p-2.5 border rounded-lg text-sm focus:ring-1 focus:ring-primary outline-none">
+                                
+                                <!-- SELECT KATEGORI -->
+                                <select id="new-category-select" class="p-2.5 border rounded-lg text-sm bg-white focus:ring-1 focus:ring-primary outline-none">
+                                    <!-- Opsi kategori diisi via JS -->
+                                </select>
+                                
+                                <!-- KOLOM LINK SPESIFIK -->
+                                <input type="text" id="new-group-link" placeholder="Link Gabung Group (Opsional)" class="p-2.5 border rounded-lg text-sm bg-green-50 border-green-200 focus:ring-1 focus:ring-green-500 outline-none">
+                                <input type="text" id="new-full-link" placeholder="Link Tonton Full (Opsional)" class="p-2.5 border rounded-lg text-sm bg-blue-50 border-blue-200 focus:ring-1 focus:ring-blue-500 outline-none">
+                            </div>
+                            
+                            <div class="flex gap-2 mt-4">
+                                <button id="btn-save-video" onclick="handleVideoSubmit()" class="bg-green-600 hover:bg-green-700 text-white px-6 py-2.5 rounded-lg text-sm font-bold w-full sm:w-auto transition shadow-md">
+                                    <i class="bi bi-plus-circle mr-1"></i> Tambah Video
+                                </button>
+                                <button id="btn-cancel-edit" onclick="resetForm()" class="bg-gray-200 hover:bg-gray-300 text-gray-700 px-6 py-2.5 rounded-lg text-sm font-bold hidden transition">
+                                    Batal
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="overflow-x-auto rounded-lg border border-gray-200">
+                            <table class="w-full text-sm text-left text-gray-500">
+                                <thead class="text-xs text-gray-700 uppercase bg-gray-100">
+                                    <tr>
+                                        <th class="px-4 py-3 whitespace-nowrap">Judul</th>
+                                        <th class="px-4 py-3 whitespace-nowrap">Kategori</th>
+                                        <th class="px-4 py-3 text-right whitespace-nowrap">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="admin-video-list">
+                                    <!-- List video dirender via JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- TAB: KATEGORI -->
+                    <div id="tab-categories" class="hidden tab-content">
+                        <div class="bg-purple-50 p-4 rounded-xl mb-6 border border-purple-100">
+                            <h4 class="font-bold mb-3 text-sm text-gray-700" id="cat-form-title">Kelola Kategori</h4>
+                            <div class="flex gap-2">
+                                <input type="text" id="new-cat-name" placeholder="Nama Kategori Baru" class="p-2.5 border rounded-lg text-sm flex-grow focus:ring-1 focus:ring-purple-500 outline-none">
+                                <button id="btn-save-cat" onclick="handleCategorySubmit()" class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap">
+                                    Tambah
+                                </button>
+                                <button id="btn-cancel-cat" onclick="resetCategoryForm()" class="bg-gray-300 hover:bg-gray-400 text-gray-700 px-4 py-2 rounded-lg text-sm font-medium hidden whitespace-nowrap">
+                                    Batal
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="overflow-x-auto rounded-lg border border-gray-200">
+                            <table class="w-full text-sm text-left text-gray-500">
+                                <thead class="text-xs text-gray-700 uppercase bg-gray-100">
+                                    <tr>
+                                        <th class="px-4 py-3">Nama Kategori</th>
+                                        <th class="px-4 py-3 text-right">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="admin-cat-list"></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- TAB: LINKS -->
+                    <div id="tab-links" class="hidden tab-content">
+                        <div class="bg-blue-50 p-5 rounded-xl border border-blue-100">
+                            <label class="block text-sm font-bold text-gray-700 mb-2">Link Tujuan Global</label>
+                            <p class="text-xs text-gray-500 mb-3">Link ini digunakan jika link spesifik video kosong.</p>
+                            <input type="text" id="global-link-input" class="w-full p-2.5 border rounded-lg mb-4 focus:ring-1 focus:ring-blue-500 outline-none" placeholder="https://...">
+                            <button onclick="saveGlobalLink()" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-lg text-sm font-bold shadow-md transition">Simpan Link</button>
+                        </div>
+                    </div>
+
+                    <!-- TAB: ADS -->
+                    <div id="tab-ads" class="hidden tab-content">
+                        <div class="space-y-4">
+                            <div class="bg-white p-4 border rounded-xl shadow-sm">
+                                <label class="block text-sm font-bold text-gray-700 mb-2">Banner Atas (HTML)</label>
+                                <textarea id="ad-banner-input" rows="3" class="w-full p-2 border rounded-lg font-mono text-xs bg-gray-50 focus:ring-1 focus:ring-gray-400 outline-none" placeholder="Paste kode iklan banner di sini..."></textarea>
+                            </div>
+                            <div class="bg-white p-4 border rounded-xl shadow-sm">
+                                <label class="block text-sm font-bold text-gray-700 mb-2">Native In-Feed (HTML)</label>
+                                <p class="text-xs text-gray-400 mb-2">Muncul setelah kartu ke-1 dan ke-5.</p>
+                                <textarea id="ad-native-input" rows="3" class="w-full p-2 border rounded-lg font-mono text-xs bg-gray-50 focus:ring-1 focus:ring-gray-400 outline-none" placeholder="Paste kode iklan native di sini..."></textarea>
+                            </div>
+                            <div class="bg-white p-4 border rounded-xl shadow-sm">
+                                <label class="block text-sm font-bold text-gray-700 mb-2">Anchor Sticky Bottom (HTML)</label>
+                                <textarea id="ad-anchor-input" rows="3" class="w-full p-2 border rounded-lg font-mono text-xs bg-gray-50 focus:ring-1 focus:ring-gray-400 outline-none" placeholder="Paste kode iklan anchor di sini..."></textarea>
+                            </div>
+                            <button onclick="saveAds()" class="bg-primary hover:bg-red-700 text-white px-6 py-3 rounded-xl font-bold w-full shadow-lg transition">Simpan Semua Kode Iklan</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- SERVICE WORKER REGISTRATION (Dummy logic for PWA Recognition) ---
+        // Ini membantu browser mengenali situs sebagai PWA yang bisa diinstall
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                // Kita tidak bisa membuat file sw.js terpisah di sini,
+                // tapi kita biarkan browser mencoba mendaftarkannya.
+                // Meskipun gagal (404), manifest.json data-uri sering cukup untuk "Add to Homescreen" di Android Chrome modern.
+                navigator.serviceWorker.register('/sw.js').then(function(registration) {
+                    console.log('SW registered: ', registration.scope);
+                }, function(err) {
+                    console.log('SW registration failed: ', err);
+                });
+            });
+        }
+
+        // --- DATA & STATE MANAGEMENT ---
+        
+        const defaultData = {
+            globalLink: 'https://edukasidewasa.xyz',
+            categories: ['Semua', 'Viral', 'Video', 'Chat'],
+            ads: {
+                banner: `<div class="w-full bg-gray-100 border-2 border-dashed border-gray-300 rounded-xl h-24 md:h-32 flex flex-col items-center justify-center overflow-hidden relative">
+                            <span class="text-gray-400 text-xs font-bold uppercase tracking-widest mb-1">Iklan Sponsor</span>
+                            <div class="text-gray-500 text-sm font-medium flex items-center gap-2"><i class="bi bi-image"></i> Banner Area (728x90)</div>
+                         </div>`,
+                native: `<div class="text-center p-6 w-full">
+                            <i class="bi bi-megaphone text-4xl text-gray-400 mb-3 block"></i>
+                            <span class="text-xs text-gray-500 font-medium">Space Iklan Native</span>
+                            <div class="mt-2 w-full h-32 bg-gray-300/50 rounded border border-dashed border-gray-400 flex items-center justify-center text-[10px] text-gray-500">Script Iklan</div>
+                         </div>`,
+                anchor: `<div class="w-full bg-white border-t border-gray-200 shadow-lg p-2 flex justify-center relative">
+                            <button onclick="this.parentElement.remove()" class="absolute -top-3 right-2 bg-gray-200 rounded-full p-1 px-2 text-xs font-bold">x</button>
+                            <div class="w-[320px] h-[50px] bg-gray-50 border border-dashed border-gray-300 flex items-center justify-center text-gray-400 text-xs rounded">Slot Anchor (320x50)</div>
+                         </div>`
+            },
+            videos: [
+                { id: 1, title: 'Cecan Viral Indo ✨', desc: 'Video viral terbaru minggu ini.', type: 'video', category: 'Viral', src: 'https://assets.mixkit.co/videos/preview/mixkit-pov-of-a-girl-taking-a-selfie-video-43125-large.mp4', poster: 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', views: '250k', groupLink: '', fullLink: '', isLive: true },
+                { id: 2, title: 'Gaya Fashion Hits 💃', desc: 'Inspirasi OOTD video pendek.', type: 'video', category: 'Video', src: 'https://assets.mixkit.co/videos/preview/mixkit-woman-walking-in-slow-motion-during-sunset-4152-large.mp4', poster: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', views: '900k', groupLink: '', fullLink: '', isLive: false },
+                { id: 3, title: 'Mahasiswi Kampus 🎓', desc: 'Vlog kegiatan kampus hari ini.', type: 'video', category: 'Viral', src: 'https://assets.mixkit.co/videos/preview/mixkit-young-students-walking-in-university-campus-42565-large.mp4', poster: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', views: '500k', groupLink: '', fullLink: '', isLive: false },
+                { id: 4, title: 'Tutorial Hijab Simple 🧕', desc: 'Cara pakai hijab pasmina simple.', type: 'video', category: 'Video', src: 'https://assets.mixkit.co/videos/preview/mixkit-woman-wearing-a-hijab-looking-at-the-ocean-40554-large.mp4', poster: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', views: '120k', groupLink: '', fullLink: '', isLive: false },
+                { id: 5, title: 'Gamer Cewek Idaman 🎮', desc: 'Live streaming main game seru.', type: 'video', category: 'Viral', src: 'https://assets.mixkit.co/videos/preview/mixkit-hands-playing-a-video-game-with-a-controller-42612-large.mp4', poster: 'https://images.unsplash.com/photo-1593640408182-31c70c8268f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', views: '1.2M', groupLink: '', fullLink: '', isLive: true },
+                { id: 6, title: 'Ukhti Syari Aesthetic ✨', desc: 'OOTD syari yang tetap modis.', type: 'video', category: 'Chat', src: 'https://assets.mixkit.co/videos/preview/mixkit-muslim-woman-using-her-smartphone-40551-large.mp4', poster: 'https://images.unsplash.com/photo-1525151452137-3d9d9f0876b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', views: '340k', groupLink: '', fullLink: '', isLive: false },
+                { id: 7, title: 'Kuliner Viral Pedas 🌶️', desc: 'Review seblak terpedas di kota.', type: 'video', category: 'Video', src: 'https://assets.mixkit.co/videos/preview/mixkit-serving-dinner-on-a-table-42296-large.mp4', poster: 'https://images.unsplash.com/photo-1516813607416-9848a7682a3b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', views: '890k', groupLink: '', fullLink: '', isLive: false },
+                { id: 8, title: 'Wisata Alam Indah 🌿', desc: 'Healing sejenak menikmati alam.', type: 'video', category: 'Viral', src: 'https://assets.mixkit.co/videos/preview/mixkit-fresh-stream-in-a-green-forest-1207-large.mp4', poster: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', views: '150k', groupLink: '', fullLink: '', isLive: false }
+            ]
+        };
+
+        let appData = JSON.parse(localStorage.getItem('grupViralData')) || defaultData;
+        if (!appData.categories) appData.categories = ['Semua', 'Viral', 'Video', 'Chat'];
+        
+        // Merge logic for new defaults
+        if (appData.videos.length < 8) {
+             const existingIds = new Set(appData.videos.map(v => v.id));
+             defaultData.videos.forEach(v => {
+                 if(!existingIds.has(v.id)) appData.videos.push(v);
+             });
+        }
+
+        let editingIndex = -1;
+        let editingCatIndex = -1;
+        let activeCategory = 'Semua';
+
+        function saveData() {
+            localStorage.setItem('grupViralData', JSON.stringify(appData));
+            renderAll();
+        }
+
+        function renderAll() {
+            renderCategories();
+            renderGallery(activeCategory);
+            renderAdsDisplay();
+            renderAdminList(); 
+            renderAdminCategories();
+            renderCategorySelectOptions();
+        }
+
+        function renderCategories() {
+            const container = document.getElementById('category-list');
+            container.innerHTML = '';
+            appData.categories.forEach(cat => {
+                const isActive = cat === activeCategory;
+                const btnClass = isActive 
+                    ? 'px-4 py-1.5 bg-black text-white rounded-full text-xs font-medium whitespace-nowrap shadow-lg shadow-gray-200 transition transform scale-105 cat-btn-active' 
+                    : 'px-4 py-1.5 bg-white border border-gray-200 text-gray-600 rounded-full text-xs font-medium whitespace-nowrap transition hover:bg-gray-50';
+                const btn = document.createElement('button');
+                btn.className = btnClass;
+                btn.innerText = cat;
+                btn.onclick = () => filterGallery(cat);
+                container.appendChild(btn);
+            });
+        }
+
+        function filterGallery(category) {
+            activeCategory = category;
+            renderCategories();
+            renderGallery(category);
+        }
+
+        function renderGallery(filter = 'Semua') {
+            const grid = document.getElementById('video-grid');
+            grid.innerHTML = ''; 
+
+            const filteredVideos = appData.videos.filter(video => {
+                return filter === 'Semua' || video.category === filter;
+            });
+
+            if (filteredVideos.length === 0) {
+                grid.innerHTML = '<div class="col-span-full text-center py-20 text-gray-400 text-sm">Belum ada video di kategori ini.</div>';
+                return;
+            }
+
+            filteredVideos.forEach((video, index) => {
+                let mediaContent = '';
+                if (video.type === 'video') {
+                    mediaContent = `
+                        <video autoplay muted loop playsinline poster="${video.poster}">
+                            <source src="${video.src}" type="video/mp4">
+                        </video>
+                        <div class="absolute top-3 right-3 bg-black/60 backdrop-blur-sm text-white text-[10px] font-bold px-2 py-1 rounded-md flex items-center z-10">
+                            <i class="bi bi-play-fill mr-1 text-lg"></i> ${video.views}
+                        </div>
+                    `;
+                } else if (video.type === 'embed') {
+                    mediaContent = `<div class="w-full h-full bg-black flex items-center justify-center overflow-hidden">${video.src}</div>`;
+                }
+
+                const liveBadge = video.isLive ? '<div class="absolute bottom-3 left-3 bg-red-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-sm z-10">LIVE</div>' : '';
+                const linkToGroup = video.groupLink && video.groupLink.trim() !== '' ? video.groupLink : appData.globalLink;
+                const linkToFull = video.fullLink && video.fullLink.trim() !== '' ? video.fullLink : appData.globalLink;
+
+                const cardHtml = `
+                    <div class="bg-white rounded-xl overflow-hidden shadow-sm card-hover border border-gray-100 flex flex-col h-full relative">
+                        <div class="img-container relative">
+                            ${mediaContent}
+                            ${liveBadge}
+                        </div>
+                        <div class="p-4 flex flex-col flex-grow">
+                            <div class="flex justify-between items-start mb-1 gap-2">
+                                <h3 class="font-bold text-gray-900 truncate w-3/4">${video.title}</h3>
+                                <span class="text-[10px] bg-gray-100 text-gray-500 px-1.5 py-0.5 rounded border whitespace-nowrap">${video.category || 'Umum'}</span>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-1 mb-4 line-clamp-2">${video.desc}</p>
+                            <div class="mt-auto space-y-2">
+                                <button onclick="joinGroup('${linkToFull}')" class="w-full bg-white border border-gray-200 hover:bg-gray-50 text-gray-900 font-semibold py-2 rounded-lg text-sm flex justify-center items-center gap-2 transition active:scale-95">
+                                    <i class="bi bi-collection-play"></i> Tonton Full
+                                </button>
+                                <button onclick="joinGroup('${linkToGroup}')" class="w-full bg-green-600 hover:bg-green-700 active:bg-green-800 text-white font-semibold py-2 rounded-lg text-sm flex justify-center items-center gap-2 shadow-md shadow-green-100 transition active:scale-95">
+                                    <i class="bi bi-whatsapp"></i> Gabung Grup
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                grid.innerHTML += cardHtml;
+
+                // Native Ad Logic: Index 0 (setelah kartu 1) dan Index 4 (setelah kartu 5)
+                if ((index === 0 || index === 4) && appData.ads.native) {
+                    const nativeAdHtml = `
+                    <div class="bg-gray-50 rounded-xl overflow-hidden shadow-sm border border-gray-200 flex flex-col h-full relative group">
+                        <div class="absolute top-2 right-2 bg-white/90 text-gray-500 text-[10px] px-2 py-0.5 rounded border border-gray-200 z-10 font-medium">Promosi</div>
+                        <div class="img-container relative bg-gray-200 flex items-center justify-center aspect-[9/16] overflow-hidden">
+                             ${appData.ads.native}
+                        </div>
+                        <div class="p-4 flex flex-col flex-grow bg-white">
+                            <h3 class="font-bold text-gray-900 truncate">Info Sponsor</h3>
+                            <p class="text-xs text-gray-500 mt-1 mb-4 line-clamp-2">Klik iklan di atas untuk info lebih lanjut.</p>
+                            <div class="mt-auto">
+                                 <button class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg text-sm shadow-sm transition">Lihat Detail</button>
+                            </div>
+                        </div>
+                    </div>`;
+                    grid.innerHTML += nativeAdHtml;
+                }
+            });
+        }
+
+        function renderAdsDisplay() {
+            document.getElementById('display-ad-banner').innerHTML = appData.ads.banner;
+            const anchorContainer = document.getElementById('display-ad-anchor');
+            if(appData.ads.anchor && appData.ads.anchor.trim() !== "") {
+                anchorContainer.innerHTML = appData.ads.anchor;
+                anchorContainer.style.display = 'block';
+            } else {
+                anchorContainer.style.display = 'none';
+            }
+        }
+
+        function toggleAdmin() {
+            const modal = document.getElementById('admin-panel');
+            modal.classList.toggle('hidden');
+            if (!modal.classList.contains('hidden')) {
+                renderAdminList();
+                renderAdminCategories();
+                renderCategorySelectOptions();
+                document.getElementById('global-link-input').value = appData.globalLink;
+                document.getElementById('ad-banner-input').value = appData.ads.banner;
+                document.getElementById('ad-native-input').value = appData.ads.native;
+                document.getElementById('ad-anchor-input').value = appData.ads.anchor;
+            }
+        }
+
+        function checkLogin() {
+            const pass = document.getElementById('admin-pass').value;
+            // Password Encrypted Check (Masukin474@)
+            if (btoa(pass) === 'TWFzdWtpbjQ3NEA=') {
+                document.getElementById('admin-login').classList.add('hidden');
+                document.getElementById('admin-content').classList.remove('hidden');
+            } else {
+                alert('Password salah!');
+                document.getElementById('admin-pass').value = '';
+            }
+        }
+
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(el => {
+                el.classList.remove('bg-white', 'shadow', 'text-gray-900');
+                el.classList.add('text-gray-500');
+            });
+            document.getElementById(tabId).classList.remove('hidden');
+            document.getElementById('btn-' + tabId).classList.add('bg-white', 'shadow', 'text-gray-900');
+            document.getElementById('btn-' + tabId).classList.remove('text-gray-500');
+        }
+
+        function renderCategorySelectOptions() {
+            const select = document.getElementById('new-category-select');
+            select.innerHTML = '';
+            const assignableCats = appData.categories.filter(c => c !== 'Semua');
+            assignableCats.forEach(cat => {
+                const option = document.createElement('option');
+                option.value = cat;
+                option.innerText = cat;
+                select.appendChild(option);
+            });
+            if(assignableCats.length === 0) {
+                const option = document.createElement('option');
+                option.value = 'Umum';
+                option.innerText = 'Umum';
+                select.appendChild(option);
+            }
+        }
+
+        function renderAdminCategories() {
+            const tbody = document.getElementById('admin-cat-list');
+            tbody.innerHTML = '';
+            appData.categories.forEach((cat, index) => {
+                const isProtected = cat === 'Semua';
+                const actionButtons = isProtected ? 
+                    `<span class="text-xs text-gray-400 italic">Default</span>` :
+                    `<button onclick="editCategory(${index})" class="text-blue-600 hover:underline font-bold text-xs mr-2">Edit</button>
+                     <button onclick="deleteCategory(${index})" class="text-red-600 hover:underline font-bold text-xs">Hapus</button>`;
+                const row = `
+                    <tr class="bg-white border-b hover:bg-purple-50">
+                        <td class="px-4 py-3 font-medium text-gray-900 text-sm">${cat}</td>
+                        <td class="px-4 py-3 text-right whitespace-nowrap">${actionButtons}</td>
+                    </tr>
+                `;
+                tbody.innerHTML += row;
+            });
+        }
+
+        function handleCategorySubmit() {
+            const name = document.getElementById('new-cat-name').value.trim();
+            if (!name) return alert('Nama kategori wajib diisi!');
+            if (appData.categories.includes(name) && editingCatIndex === -1) return alert('Kategori sudah ada!');
+
+            if (editingCatIndex >= 0) {
+                const oldName = appData.categories[editingCatIndex];
+                appData.categories[editingCatIndex] = name;
+                appData.videos.forEach(v => { if(v.category === oldName) v.category = name; });
+                alert('Kategori berhasil diperbarui!');
+            } else {
+                appData.categories.push(name);
+            }
+            resetCategoryForm();
+            saveData();
+        }
+
+        function editCategory(index) {
+            const catName = appData.categories[index];
+            document.getElementById('new-cat-name').value = catName;
+            editingCatIndex = index;
+            const btn = document.getElementById('btn-save-cat');
+            btn.innerText = 'Simpan';
+            btn.classList.remove('bg-purple-600', 'hover:bg-purple-700');
+            btn.classList.add('bg-blue-600', 'hover:bg-blue-700');
+            document.getElementById('btn-cancel-cat').classList.remove('hidden');
+            document.getElementById('cat-form-title').innerText = "Edit Kategori";
+        }
+
+        function resetCategoryForm() {
+            editingCatIndex = -1;
+            document.getElementById('new-cat-name').value = '';
+            const btn = document.getElementById('btn-save-cat');
+            btn.innerText = 'Tambah';
+            btn.classList.add('bg-purple-600', 'hover:bg-purple-700');
+            btn.classList.remove('bg-blue-600', 'hover:bg-blue-700');
+            document.getElementById('btn-cancel-cat').classList.add('hidden');
+            document.getElementById('cat-form-title').innerText = "Kelola Kategori";
+        }
+
+        function deleteCategory(index) {
+            const catName = appData.categories[index];
+            if(confirm(`Hapus kategori "${catName}"? Video akan kehilangan label kategorinya.`)) {
+                appData.categories.splice(index, 1);
+                appData.videos.forEach(v => { if(v.category === catName) v.category = 'Umum'; });
+                if (editingCatIndex === index) resetCategoryForm();
+                saveData();
+            }
+        }
+
+        function renderAdminList() {
+            const tbody = document.getElementById('admin-video-list');
+            tbody.innerHTML = '';
+            appData.videos.forEach((video, index) => {
+                const row = `
+                    <tr class="bg-white border-b hover:bg-gray-50">
+                        <td class="px-4 py-3 font-medium text-gray-900 text-sm truncate max-w-[150px]">${video.title}</td>
+                        <td class="px-4 py-3"><span class="bg-gray-100 text-gray-600 text-xs px-2 py-0.5 rounded border">${video.category || '-'}</span></td>
+                        <td class="px-4 py-3 text-right whitespace-nowrap">
+                            <button onclick="editVideo(${index})" class="text-blue-600 hover:underline font-bold text-xs mr-2">Edit</button>
+                            <button onclick="deleteVideo(${index})" class="text-red-600 hover:underline font-bold text-xs">Hapus</button>
+                        </td>
+                    </tr>
+                `;
+                tbody.innerHTML += row;
+            });
+        }
+
+        function handleVideoSubmit() {
+            const title = document.getElementById('new-title').value;
+            const desc = document.getElementById('new-desc').value;
+            const type = document.getElementById('new-type').value;
+            const src = document.getElementById('new-src').value;
+            const views = document.getElementById('new-views').value || '0';
+            const category = document.getElementById('new-category-select').value;
+            const groupLink = document.getElementById('new-group-link').value;
+            const fullLink = document.getElementById('new-full-link').value;
+            const defaultPoster = 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1000&auto=format&fit=crop';
+            const poster = (editingIndex >= 0) ? appData.videos[editingIndex].poster : defaultPoster;
+
+            if (!title || !src) return alert('Judul dan Source wajib diisi!');
+
+            if (editingIndex >= 0) {
+                appData.videos[editingIndex] = { ...appData.videos[editingIndex], title, desc, type, src, poster, views, category, groupLink, fullLink };
+                alert('Video berhasil diperbarui!');
+            } else {
+                appData.videos.unshift({ id: Date.now(), title, desc, type, src, poster, views, category, groupLink, fullLink, isLive: false });
+            }
+            resetForm();
+            saveData();
+        }
+
+        function editVideo(index) {
+            const video = appData.videos[index];
+            document.getElementById('new-title').value = video.title;
+            document.getElementById('new-desc').value = video.desc;
+            document.getElementById('new-type').value = video.type;
+            document.getElementById('new-src').value = video.src;
+            document.getElementById('new-views').value = video.views;
+            document.getElementById('new-category-select').value = video.category || 'Viral';
+            document.getElementById('new-group-link').value = video.groupLink || '';
+            document.getElementById('new-full-link').value = video.fullLink || '';
+            editingIndex = index;
+            
+            document.getElementById('form-title').innerHTML = '<i class="bi bi-pencil-square"></i> Edit Video';
+            const btn = document.getElementById('btn-save-video');
+            btn.innerHTML = '<i class="bi bi-check-circle mr-1"></i> Simpan Perubahan';
+            btn.classList.replace('bg-green-600', 'bg-blue-600');
+            btn.classList.replace('hover:bg-green-700', 'hover:bg-blue-700');
+            document.getElementById('btn-cancel-edit').classList.remove('hidden');
+            switchTab('tab-videos');
+            document.getElementById('form-title').scrollIntoView({behavior: 'smooth'});
+        }
+
+        function resetForm() {
+            editingIndex = -1;
+            document.getElementById('new-title').value = '';
+            document.getElementById('new-desc').value = '';
+            document.getElementById('new-src').value = '';
+            document.getElementById('new-views').value = '';
+            document.getElementById('new-group-link').value = '';
+            document.getElementById('new-full-link').value = '';
+            
+            document.getElementById('form-title').innerHTML = '<i class="bi bi-plus-square"></i> Tambah Konten Baru';
+            const btn = document.getElementById('btn-save-video');
+            btn.innerHTML = '<i class="bi bi-plus-circle mr-1"></i> Tambah Video';
+            btn.classList.replace('bg-blue-600', 'bg-green-600');
+            btn.classList.replace('hover:bg-blue-700', 'hover:bg-green-700');
+            document.getElementById('btn-cancel-edit').classList.add('hidden');
+        }
+
+        function deleteVideo(index) {
+            if(confirm('Yakin hapus video ini?')) {
+                appData.videos.splice(index, 1);
+                if (editingIndex === index) resetForm();
+                saveData();
+            }
+        }
+
+        function saveGlobalLink() {
+            const url = document.getElementById('global-link-input').value;
+            if(url) {
+                appData.globalLink = url;
+                saveData();
+                alert('Link global disimpan!');
+            }
+        }
+
+        function saveAds() {
+            appData.ads.banner = document.getElementById('ad-banner-input').value;
+            appData.ads.native = document.getElementById('ad-native-input').value;
+            appData.ads.anchor = document.getElementById('ad-anchor-input').value;
+            saveData();
+            alert('Kode iklan disimpan!');
+        }
+
+        function joinGroup(url) {
+            const targetUrl = url;
+            const btn = event.currentTarget;
+            const originalContent = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = '<i class="bi bi-arrow-clockwise animate-spin"></i>...';
+            btn.classList.add('opacity-75');
+            setTimeout(() => {
+                window.location.href = targetUrl;
+                setTimeout(() => {
+                    btn.disabled = false;
+                    btn.innerHTML = originalContent;
+                    btn.classList.remove('opacity-75');
+                }, 1000);
+            }, 800);
+        }
+
+        renderAll();
+
+        let deferredPrompt;
+        const installContainer = document.getElementById('install-container');
+        const installButton = document.getElementById('install-button');
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            installContainer.classList.remove('hidden');
+        });
+        installButton.addEventListener('click', async () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                deferredPrompt = null;
+                installContainer.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
